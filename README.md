@@ -10,6 +10,10 @@ Cyber Security Toolkit, Python ve CustomTkinter ile geliştirilmiş, Windows üz
 
 Uygulama; temel güvenlik kontrollerini sade ve modern bir arayüz üzerinden gerçekleştirmek, öğrenme sürecini desteklemek ve kişisel projelerde kullanılmak amacıyla geliştirilmiştir.
 
+## Ekran Görüntüsü
+
+![Cyber Security Toolkit Dashboard](assets/dashboard.png)
+
 ## Özellikler
 
 - TCP Port Scanner
@@ -78,6 +82,10 @@ Bu proje MIT License ile lisanslanmıştır. Ayrıntılar için [LICENSE](LICENS
 Cyber Security Toolkit is a modular desktop cybersecurity toolkit developed with Python and CustomTkinter for Windows.
 
 The application was created to perform basic security checks through a simple and modern interface, support the learning process, and provide a practical foundation for personal cybersecurity projects.
+
+## Screenshot
+
+![Cyber Security Toolkit Dashboard](assets/dashboard.png)
 
 ## Features
 
