@@ -9,6 +9,7 @@ import urllib.request
 import platform
 import os
 import subprocess
+import webbrowser
 
 ctk.set_appearance_mode("light")
 ctk.set_default_color_theme("blue")
@@ -41,6 +42,11 @@ class CyberSecurityToolkitGUI(ctk.CTk):
         self.create_sidebar()
         self.create_main_panel()
 
+    def open_github_repository(self):
+        webbrowser.open(
+            "https://github.com/SEZER2014/CyberSecurityToolkit"
+        )
+    
     def create_sidebar(self):
         self.sidebar = ctk.CTkFrame(
             self, width=300, corner_radius=0,
@@ -243,7 +249,7 @@ class CyberSecurityToolkitGUI(ctk.CTk):
         ).pack(fill="x", padx=22, pady=(0, 10))
 
         ctk.CTkButton(
-            quick_card, text="●   GitHub Repository", anchor="w", height=44,
+            quick_card, text="●   GitHub Repository", command=self.open_github_repository, anchor="w", height=44,
             fg_color="#FFFFFF", hover_color="#EEF3F9", text_color=self.TEXT,
             border_width=1, border_color=self.BORDER,
             font=ctk.CTkFont(family="Segoe UI", size=14)
