@@ -95,12 +95,56 @@ class CyberSecurityToolkitGUI(ctk.CTk):
         self.create_menu_button("http", "▤   HTTP Headers", self.show_http_headers)
         self.create_menu_button("dns", "◎   DNS Lookup", self.show_dns_lookup)
 
-        warning = ctk.CTkLabel(
-            self.sidebar, text="AUTHORIZED USE ONLY",
-            font=ctk.CTkFont(family="Consolas", size=12, weight="bold"),
-            text_color=self.RED
+        footer = ctk.CTkFrame(
+            self.sidebar,
+            fg_color="transparent"
         )
-        warning.pack(side="bottom", padx=20, pady=35)
+        footer.pack(
+            side="bottom",
+            fill="x",
+            padx=20,
+            pady=(0, 22)
+        )
+
+        signature = ctk.CTkLabel(
+            footer,
+            text=(
+                "Developed by SEZER ISIK\n"
+                "CyberSecurityToolkit v1.0.0\n"
+                "github.com/SEZER2014"
+            ),
+            font=ctk.CTkFont(
+                family="Segoe UI",
+                size=11
+            ),
+            text_color=self.MUTED,
+            justify="left",
+            anchor="w"
+        )
+        signature.pack(
+            fill="x",
+            padx=(8, 0),
+            pady=(0, 10),
+            anchor="w"
+        )
+
+        warning = ctk.CTkLabel(
+            footer,
+            text="AUTHORIZED USE ONLY",
+            font=ctk.CTkFont(
+                family="Consolas",
+                size=11,
+                weight="bold"
+            ),
+            text_color=self.RED,
+            justify="left",
+            anchor="w"
+        )
+        warning.pack(
+            fill="x",
+            padx=(8, 0),
+            anchor="w"
+        )
 
     def create_menu_button(self, key, text, command):
         button = ctk.CTkButton(
