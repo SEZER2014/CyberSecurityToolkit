@@ -41,6 +41,121 @@ class CyberSecurityToolkitGUI(ctk.CTk):
         self.menu_buttons = {}
         self.create_sidebar()
         self.create_main_panel()
+        
+        self.withdraw()
+        self.after(150, self.show_legal_warning)
+
+    def show_legal_warning(self):
+        warning_window = ctk.CTkToplevel(self)
+        warning_window.title("Yasal ve Etik Kullanım Uyarısı")
+        warning_window.geometry("580x330")
+        warning_window.resizable(False, False)
+        warning_window.configure(fg_color="#F8FAFC")
+
+        # Sağ üstteki X düğmesine basılırsa uygulamayı kapatır.
+        warning_window.protocol("WM_DELETE_WINDOW", self.destroy)
+
+        warning_window.transient(self)
+        warning_window.grab_set()
+        warning_window.lift()
+        warning_window.focus_force()
+
+        # Pencereyi ekranın ortasında açar.
+        warning_window.update_idletasks()
+
+        window_width = 580
+        window_height = 330
+
+        screen_width = warning_window.winfo_screenwidth()
+        screen_height = warning_window.winfo_screenheight()
+
+        x_position = (screen_width - window_width) // 2
+        y_position = (screen_height - window_height) // 2
+
+        warning_window.geometry(
+            f"{window_width}x{window_height}+"
+            f"{x_position}+{y_position}"
+        )
+
+        title = ctk.CTkLabel(
+            warning_window,
+            text="YASAL VE ETİK KULLANIM UYARISI",
+            font=ctk.CTkFont(
+                family="Segoe UI",
+                size=21,
+                weight="bold"
+            ),
+            text_color=self.BLUE
+        )
+        title.pack(pady=(35, 22))
+
+        message = ctk.CTkLabel(
+            warning_window,
+            text=(
+                "Bu uygulama yalnızca eğitim, kişisel gelişim ve açıkça\n"
+                "izin verilmiş sistemlerde güvenlik testi amacıyla kullanılmalıdır.\n\n"
+                "Uygulamanın kötü amaçlı, yetkisiz sistemlerde kullanımından\n"
+                "veya doğabilecek sonuçlardan geliştirici sorumlu değildir."
+            ),
+            font=ctk.CTkFont(
+                family="Segoe UI",
+                size=14
+            ),
+            text_color=self.TEXT,
+            justify="center"
+        )
+        message.pack(padx=35)
+
+        button_frame = ctk.CTkFrame(
+            warning_window,
+            fg_color="transparent"
+        )
+        button_frame.pack(pady=28)
+
+        accept_button = ctk.CTkButton(
+            button_frame,
+            text="ONAYLIYORUM",
+            command=lambda: self.accept_legal_warning(
+                warning_window
+            ),
+            width=180,
+            height=44,
+            corner_radius=8,
+            fg_color=self.BLUE,
+            hover_color=self.BLUE_HOVER,
+            font=ctk.CTkFont(
+                family="Segoe UI",
+                size=14,
+                weight="bold"
+            )
+        )
+        accept_button.grid(row=0, column=0, padx=10)
+
+        exit_button = ctk.CTkButton(
+            button_frame,
+            text="ÇIKIŞ",
+            command=self.destroy,
+            width=140,
+            height=44,
+            corner_radius=8,
+            fg_color=self.RED,
+            hover_color="#B91C1C",
+            font=ctk.CTkFont(
+                family="Segoe UI",
+                size=14,
+                weight="bold"
+            )
+        )
+        exit_button.grid(row=0, column=1, padx=10)
+
+
+    def accept_legal_warning(self, warning_window):
+        warning_window.grab_release()
+        warning_window.destroy()
+
+        self.deiconify()
+        self.lift()
+        self.focus_force()
 
     def open_github_repository(self):
         webbrowser.open(
